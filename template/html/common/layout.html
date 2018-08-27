@@ -53,6 +53,10 @@
                       {{ end }}
                     </a>
                 </li>
+                <li {{ if eq .menu "unread_headlines" }}class="active"{{ end }} title="{{ t "Keyboard Shortcut: %s" "g q" }}">
+                    <a href="{{ route "unread_headlines" }}" data-page="unread_headlines">{{ t "Headlines" }}
+                    </a>
+                </li>
                 <li {{ if eq .menu "starred" }}class="active"{{ end }} title="{{ t "Keyboard Shortcut: %s" "g b" }}">
                     <a href="{{ route "starred" }}" data-page="starred">{{ t "Starred" }}</a>
                 </li>

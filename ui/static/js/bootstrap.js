@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let navHandler = new NavHandler();
     let keyboardHandler = new KeyboardHandler();
     keyboardHandler.on("g u", () => navHandler.goToPage("unread"));
+    keyboardHandler.on("g q", () => navHandler.goToPage("unread_headlines"));
     keyboardHandler.on("g b", () => navHandler.goToPage("starred"));
     keyboardHandler.on("g h", () => navHandler.goToPage("history"));
     keyboardHandler.on("g f", () => navHandler.goToPage("feeds"));
