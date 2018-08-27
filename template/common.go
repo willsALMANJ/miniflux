@@ -127,6 +127,10 @@ var templateCommonMap = map[string]string{
                       {{ end }}
                     </a>
                 </li>
+                <li {{ if eq .menu "unread_headlines" }}class="active"{{ end }} title="{{ t "Keyboard Shortcut: %s" "g q" }}">
+                    <a href="{{ route "unread_headlines" }}" data-page="unread_headlines">{{ t "Headlines" }}
+                    </a>
+                </li>
                 <li {{ if eq .menu "starred" }}class="active"{{ end }} title="{{ t "Keyboard Shortcut: %s" "g b" }}">
                     <a href="{{ route "starred" }}" data-page="starred">{{ t "Starred" }}</a>
                 </li>
@@ -239,6 +243,6 @@ var templateCommonMap = map[string]string{
 var templateCommonMapChecksums = map[string]string{
 	"entry_pagination": "756ef122f3ebc73754b5fc4304bf05e59da0ab4af030b2509ff4c9b4a74096ce",
 	"item_meta":        "2da78476f6c7fb8742c969ad1bfc20b7b61fddf97d79a77baf3cabda52f6fb49",
-	"layout":           "952632cafa23e02e3ae74c33a6606e127ab7bff0b82a2aa848967da8966475a5",
+	"layout":           "e2f003307b9320568c868be7fe95ba8071741e3ed71a7233d760844a5cca274b",
 	"pagination":       "b592d58ea9d6abf2dc0b158621404cbfaeea5413b1c8b8b9818725963096b196",
 }

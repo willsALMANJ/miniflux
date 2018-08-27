@@ -93,6 +93,7 @@ func routes(cfg *config.Config, store *storage.Storage, feedHandler *feed.Handle
 	uiRouter.HandleFunc("/subscriptions", uiController.ChooseSubscription).Name("chooseSubscription").Methods("POST")
 	uiRouter.HandleFunc("/mark-all-as-read", uiController.MarkAllAsRead).Name("markAllAsRead").Methods("GET")
 	uiRouter.HandleFunc("/unread", uiController.ShowUnreadPage).Name("unread").Methods("GET")
+	uiRouter.HandleFunc("/unread_headlines", uiController.ShowUnreadHeadlinesPage).Name("unread_headlines").Methods("GET")
 	uiRouter.HandleFunc("/history", uiController.ShowHistoryPage).Name("history").Methods("GET")
 	uiRouter.HandleFunc("/starred", uiController.ShowStarredPage).Name("starred").Methods("GET")
 	uiRouter.HandleFunc("/search", uiController.ShowSearchEntries).Name("searchEntries").Methods("GET")

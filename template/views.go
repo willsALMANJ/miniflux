@@ -1237,13 +1237,58 @@ var templateViewsMap = map[string]string{
                 <span class="category"><a href="{{ route "categoryEntries" "categoryID" .Feed.Category.ID }}">{{ .Feed.Category.Title }}</a></span>
             </div>
             {{ template "item_meta" dict "user" $.user "entry" . "hasSaveEntry" $.hasSaveEntry }}
+    <div class="entry-content">
+            {{ noescape (proxyFilter .Content) }}
+    </div>
         </article>
         {{ end }}
     </div>
     {{ template "pagination" .pagination }}
 {{ end }}
 
-{{ end }}`,
+{{ end }}
+`,
+	"unread_headlines": `{{ define "title"}}{{ t "Unread Items" }} {{ if gt .countUnread 0 }}({{ .countUnread }}){{ end }} {{ end }}
+
+{{ define "content"}}
+<section class="page-header">
+    <h1>{{ t "Unread" }} (<span class="unread-counter">{{ .countUnread }}</span>)</h1>
+    {{ if .entries }}
+    <ul>
+        <li>
+            <a href="#" data-on-click="markPageAsRead">{{ t "Mark this page as read" }}</a>
+        </li>
+        <li>
+            <a href="{{ route "markAllAsRead" }}">{{ t "Mark all as read" }}</a>
+        </li>
+    </ul>
+    {{ end }}
+</section>
+
+{{ if not .entries }}
+    <p class="alert">{{ t "There is no unread article." }}</p>
+{{ else }}
+    <div class="items hide-read-items">
+        {{ range .entries }}
+        <article class="item touch-item item-status-{{ .Status }}" data-id="{{ .ID }}">
+            <div class="item-header">
+                <span class="item-title">
+                    {{ if ne .Feed.Icon.IconID 0 }}
+                        <img src="{{ route "icon" "iconID" .Feed.Icon.IconID }}" width="16" height="16" alt="{{ .Feed.Title }}">
+                    {{ end }}
+                    <a href="{{ route "unreadEntry" "entryID" .ID }}">{{ .Title }}</a>
+                </span>
+                <span class="category"><a href="{{ route "categoryEntries" "categoryID" .Feed.Category.ID }}">{{ .Feed.Category.Title }}</a></span>
+            </div>
+            {{ template "item_meta" dict "user" $.user "entry" . "hasSaveEntry" $.hasSaveEntry }}
+        </article>
+        {{ end }}
+    </div>
+    {{ template "pagination" .pagination }}
+{{ end }}
+
+{{ end }}
+`,
 	"users": `{{ define "title"}}{{ t "Users" }}{{ end }}
 
 {{ define "content"}}
@@ -1332,6 +1377,7 @@ var templateViewsMapChecksums = map[string]string{
 	"search_entries":      "a6e69c3edf414558541e8a23bf197d7580b043f8ddaf53a5b609bcd678fd6f3d",
 	"sessions":            "3fa79031dd883847eba92fbafe5f535fa3a4e1614bb610f20588b6f8fc8b3624",
 	"settings":            "d435dc37e82896ce9a7a573b3c2aeda1db71eec62349e2472ebbf1d5c3e0bc21",
-	"unread_entries":      "adbddbdd0ce70f5c622a2a2687b261121e397e15536dcb551f71bb11550ca46b",
+	"unread_entries":      "f5377f0f36505b43bc7e8fbdd631bfe5be82d5a228a30b53e3555bac393700f5",
+	"unread_headlines":    "480b7704fb9bc4898bd1502220407d14ce36a0d3b1535b54866a441cff81755e",
 	"users":               "c6d91b0b29984b4cb3073bec6a2933cfb72981ec60f54b6c7aa05194f0e860bd",
 }
